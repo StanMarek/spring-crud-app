@@ -1,8 +1,9 @@
-package pl.stanmarek.socialmedia;
+package pl.stanmarek.crudapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import pl.stanmarek.crudapp.dao.UserRepo;
 
 public class Start {
 
@@ -15,15 +16,6 @@ public class Start {
 
     @EventListener(ApplicationReadyEvent.class)
     public void runExample(){
-        User user = new User("username", "password", "email");
-        User user2 = new User("username2", "password2", "email2");
-        User user3 = new User("username3", "password3", "email3");
 
-        userRepo.save(user);
-        userRepo.save(user2);
-        userRepo.save(user3);
-
-        Iterable<User> allUsers = userRepo.findAll();
-        allUsers.forEach(System.out::println);
     }
 }

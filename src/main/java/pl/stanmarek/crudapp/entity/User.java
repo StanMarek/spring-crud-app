@@ -1,12 +1,10 @@
-package pl.stanmarek.socialmedia;
+package pl.stanmarek.crudapp.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import javax.persistence.*;
 
-import static javax.persistence.GenerationType.IDENTITY;
 
 @Getter
 @Setter
@@ -14,8 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(unique = true)
@@ -36,9 +33,11 @@ public class User {
 
     }
 
-    public User(String username, String password, String emailAddress){
+    public User(Long id, @NonNull String username, @NonNull String password, @NonNull String emailAddress) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.emailAddress = emailAddress;
     }
+
 }
